@@ -17,10 +17,6 @@ e.g.
 
 ### code completion
 
-./install-llama-server.sh $HOME/.bin/llama.cpp/llama-server $HOME/.cache/lm-studio/models/prithivMLmods/Qwen2.5-Coder-7B-GGUF/Qwen2.5-Coder-7B.Q4_K_M.gguf  qwen2.5-coder-3b 3458
-
-./install-llama-server.sh $HOME/.bin/llama.cpp/llama-server $HOME/.cache/lm-studio/models/second-state/StarCoder2-7B-GGUF/starcoder2-7b-Q4_0.gguf starcoder2-7b 3458
-
 ./install-llama-server.sh $HOME/.bin/llama.cpp/llama-server $HOME/.cache/lm-studio/models/second-state/StarCoder2-3B-GGUF/starcoder2-3b-Q4_0.gguf starcoder2-3b 3458
 ```
 
