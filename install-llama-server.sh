@@ -31,6 +31,10 @@ PLIST_CONTENT="<?xml version=\"1.0\" encoding=\"UTF-8\"?>
         <string>8192</string>
         <string>--n-predict</string>
         <string>4096</string>
+        <string>--parallel</string>
+        <string>4</string>
+        <string>--cont-batching</string>
+        <string>--flash-attn</string>
         <string>--n-gpu-layers</string>
         <string>1000</string>
         <string>--batch-size</string>
