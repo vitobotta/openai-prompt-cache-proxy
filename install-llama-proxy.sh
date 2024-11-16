@@ -1,8 +1,12 @@
 #!/bin/bash
 
-if [ "$#" -ne 4 ]; then
+usage() {
     echo "Usage: $0 <docker-binary-path> <label> <upstream-port> <proxy-port>"
     exit 1
+}
+
+if [ "$#" -ne 4 ]; then
+    usage
 fi
 
 DOCKER_BINARY=$1
@@ -10,11 +14,18 @@ LABEL=$2
 UPSTREAM_PORT=$3
 PROXY_PORT=$4
 
-PLIST_PATH="/Library/LaunchDaemons/com.llama-proxy.${LABEL}.plist"
+if [ ! -x "$DOCKER_BINARY" ]; then
+    echo "Error: Docker binary not found or not executable: $DOCKER_BINARY"
+    exit 1
+fi
 
-PLIST_CONTENT="<?xml version=\"1.0\" encoding=\"UTF-8\"?>
-<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">
-<plist version=\"1.0\">
+PLIST_PATH="/Library/LaunchDaemons/com.llama-proxy.${LABEL}.plist"
+PLIST_TEMP=$(mktemp)
+
+cat <<EOF | sudo tee "$PLIST_TEMP" > /dev/null
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
 <dict>
     <key>Label</key>
     <string>com.llama-proxy.${LABEL}</string>
@@ -40,14 +51,22 @@ PLIST_CONTENT="<?xml version=\"1.0\" encoding=\"UTF-8\"?>
     <key>StandardErrorPath</key>
     <string>/var/log/com.llama-proxy.${LABEL}.err.log</string>
 </dict>
-</plist>"
+</plist>
+EOF
 
-echo "${PLIST_CONTENT}" | sudo tee "${PLIST_PATH}" > /dev/null
+cleanup() {
+    rm -f "$PLIST_TEMP"
+    echo "Temporary files cleaned up."
+}
 
-sudo chown root:wheel "${PLIST_PATH}"
-sudo chmod 644 "${PLIST_PATH}"
+trap cleanup EXIT
 
-sudo launchctl load "${PLIST_PATH}"
+sudo tee "$PLIST_PATH" < "$PLIST_TEMP" > /dev/null || { echo "Failed to write plist file"; exit 1; }
+
+sudo chown root:wheel "$PLIST_PATH" || { echo "Failed to change owner of plist file"; exit 1; }
+sudo chmod 644 "$PLIST_PATH" || { echo "Failed to change permissions of plist file"; exit 1; }
+
+sudo launchctl load "$PLIST_PATH" || { echo "Failed to load plist file"; exit 1; }
 
 echo "Daemon created and loaded with label: com.llama-proxy.${LABEL}"
 
