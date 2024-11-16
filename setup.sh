@@ -80,6 +80,7 @@ if [[ "$COMMAND" == "install" ]]; then
         <string>4</string>
         <string>--cont-batching</string>
         <string>--flash-attn</string>
+        <string>--mlock</string>
         <string>--n-gpu-layers</string>
         <string>1000</string>
         <string>--batch-size</string>
