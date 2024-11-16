@@ -1,7 +1,7 @@
 #!/bin/bash
 
 usage() {
-    echo "Usage: $0 install|uninstall|load|unload --type <server|proxy> --binary-path <path> --label <label> --port <port> [--model-path <path>] [--upstream-port <port>]"
+    echo "Usage: $0 install|uninstall|load|unload --type <server|proxy> --binary-path <path> --label <label> --port <port> [--model-path <path>] [--upstream-port <port>] [--keep-model-in-memory <true|false>]"
     exit 1
 }
 
@@ -14,6 +14,7 @@ MODEL_PATH=
 LABEL=
 PORT=
 UPSTREAM_PORT=
+MLOCK="true"
 
 while [[ "$#" -gt 0 ]]; do
     case $1 in
@@ -23,6 +24,7 @@ while [[ "$#" -gt 0 ]]; do
         --label) LABEL="$2"; shift 2 ;;
         --port) PORT="$2"; shift 2 ;;
         --upstream-port) UPSTREAM_PORT="$2"; shift 2 ;;
+        --keep-model-in-memory) MLOCK="$2"; shift 2 ;;
         *) usage ;;
     esac
 done
@@ -80,6 +82,12 @@ if [[ "$COMMAND" == "install" ]]; then
         <string>4</string>
         <string>--cont-batching</string>
         <string>--flash-attn</string>
+EOF
+        if [[ "$MLOCK" == "true" ]]; then
+            echo "        <string>--mlock</string>" >> "$PLIST_TEMP"
+        fi
+
+        cat >> "$PLIST_TEMP" <<EOF
         <string>--mlock</string>
         <string>--n-gpu-layers</string>
         <string>1000</string>
