@@ -35,7 +35,6 @@ PLIST_CONTENT="<?xml version=\"1.0\" encoding=\"UTF-8\"?>
         <string>1000</string>
         <string>--batch-size</string>
         <string>224</string>
-        <string>--mlock</string>
         <string>--host</string>
         <string>0.0.0.0</string>
         <string>--port</string>
