@@ -88,7 +88,6 @@ EOF
         fi
 
         cat >> "$PLIST_TEMP" <<EOF
-        <string>--mlock</string>
         <string>--n-gpu-layers</string>
         <string>1000</string>
         <string>--batch-size</string>
