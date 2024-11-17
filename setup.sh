@@ -1,7 +1,7 @@
 #!/bin/bash
 
 usage() {
-    echo "Usage: $0 install|uninstall|load|unload --type <server|proxy> --binary-path <path> --label <label> --port <port> [--model-path <path>] [--upstream-port <port>] [--keep-model-in-memory <true|false>]"
+    echo "Usage: $0 install|uninstall|load|unload --type <server|proxy> --binary-path <path> --label <label> --port <port> [--model-path <path>] [--upstream-port <port>] [--keep-model-in-memory <true|false>] [--context-length 4096]"
     exit 1
 }
 
@@ -15,6 +15,7 @@ LABEL=
 PORT=
 UPSTREAM_PORT=
 MLOCK="true"
+CONTEXT_LENGTH=4096
 
 while [[ "$#" -gt 0 ]]; do
     case $1 in
@@ -25,6 +26,7 @@ while [[ "$#" -gt 0 ]]; do
         --port) PORT="$2"; shift 2 ;;
         --upstream-port) UPSTREAM_PORT="$2"; shift 2 ;;
         --keep-model-in-memory) MLOCK="$2"; shift 2 ;;
+        --context-length) CONTEXT_LENGTH="$2"; shift 2 ;;
         *) usage ;;
     esac
 done
@@ -75,7 +77,7 @@ if [[ "$COMMAND" == "install" ]]; then
         <string>--threads-batch</string>
         <string>2</string>
         <string>--ctx-size</string>
-        <string>8192</string>
+        <string>${CONTEXT_LENGTH}</string>
         <string>--n-predict</string>
         <string>4096</string>
         <string>--parallel</string>
