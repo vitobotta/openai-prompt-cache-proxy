@@ -3,7 +3,8 @@
 ### Install
 
 ```bash
-./setup.sh install --type server --binary-path $HOME/.bin/llama.cpp/llama-server --label qwen2.5-32b --port 3456 --model-path $HOME/.cache/lm-studio/models/bartowski/Qwen2.5-32B-Instruct-GGUF/Qwen2.5-32B-Instruct-Q4_K_L.gguf --keep-model-in-memory true
+./setup.sh install --type server --binary-path $HOME/.bin/llama.cpp/llama-server --label qwen2.5-32b --port 3456 --model-path $HOME/.cache/lm-studio/models/bartowski/Qwen2.5-32B-Instruct-GGUF/Qwen2.5-32B-Instruct-Q4_K_L.gguf --keep-model-in-memory false
+
 ./setup.sh install --type proxy --binary-path $HOME/.local/bin/docker --label qwen2.5-32b --port 5678 --upstream-port 3456
 ```
 
@@ -35,7 +36,8 @@
 ### Install
 
 ```bash
-./setup.sh install --type server --binary-path $HOME/.bin/llama.cpp/llama-server --label qwen2.5-coder-32b --port 3457 --model-path $HOME/.cache/lm-studio/models/Qwen/Qwen2.5-Coder-32B-Instruct-GGUF/qwen2.5-coder-32b-instruct-q4_0.gguf  --keep-model-in-memory true
+./setup.sh install --type server --binary-path $HOME/.bin/llama.cpp/llama-server --label qwen2.5-coder-32b --port 3457 --model-path $HOME/.cache/lm-studio/models/Qwen/Qwen2.5-Coder-32B-Instruct-GGUF/qwen2.5-coder-32b-instruct-q4_0.gguf  --keep-model-in-memory false
+
 ./setup.sh install --type proxy --binary-path $HOME/.local/bin/docker --label qwen2.5-coder-32b --port 5679 --upstream-port 3457
 ```
 
