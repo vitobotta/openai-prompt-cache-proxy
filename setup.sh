@@ -72,17 +72,8 @@ if [[ "$COMMAND" == "install" ]]; then
         <string>${BINARY_PATH}</string>
         <string>-m</string>
         <string>${MODEL_PATH}</string>
-        <string>--threads</string>
-        <string>14</string>
-        <string>--threads-batch</string>
-        <string>2</string>
         <string>--ctx-size</string>
         <string>${CONTEXT_LENGTH}</string>
-        <string>--n-predict</string>
-        <string>4096</string>
-        <string>--parallel</string>
-        <string>4</string>
-        <string>--cont-batching</string>
         <string>--flash-attn</string>
 EOF
         if [[ "$MLOCK" == "true" ]]; then
@@ -92,8 +83,6 @@ EOF
         cat >> "$PLIST_TEMP" <<EOF
         <string>--n-gpu-layers</string>
         <string>1000</string>
-        <string>--batch-size</string>
-        <string>224</string>
         <string>--host</string>
         <string>0.0.0.0</string>
         <string>--port</string>
@@ -129,7 +118,7 @@ EOF
         <string>UPSTREAM_BASE_URL=http://host.docker.internal:${UPSTREAM_PORT}</string>
         <string>-p</string>
         <string>${PORT}:5678</string>
-        <string>vitobotta/openai-prompt-cache-proxy:v10</string>
+        <string>vitobotta/openai-prompt-cache-proxy:v11</string>
     </array>
     <key>RunAtLoad</key>
     <true/>
