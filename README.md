@@ -31,7 +31,7 @@
 
 ---
 
-## Qwen 2.5 32b Coder Instruct
+## Qwen 2.5 Coder 32b Instruct
 
 ### Install
 
@@ -64,30 +64,30 @@
 
 ---
 
-## Starcoder2 3b (code completions)
+## Qwen 2.5 Coder 7b  (code completions)
 
 ### Install
 
 ```bash
-./setup.sh install --type server --binary-path $HOME/.bin/llama.cpp/llama-server --label starcoder2-3b --port 3458 --model-path $HOME/.cache/lm-studio/models/second-state/StarCoder2-3B-GGUF/starcoder2-3b-Q4_K_M.gguf --keep-model-in-memory true
+./setup.sh install --type server --binary-path $HOME/.bin/llama.cpp/llama-server --label qwen2.5-coder-7b --port 3458 --model-path $HOME/.cache/lm-studio/models/QuantFactory/Qwen2.5-Coder-7B-GGUF/Qwen2.5-Coder-7B.Q4_0.gguf --keep-model-in-memory true
 ```
 
 ### Uninstall
 
 ```bash
-./setup.sh uninstall --type server --label starcoder2-3b
+./setup.sh uninstall --type server --label qwen2.5-coder-7b
 ```
 
 ### Unload
 
 ```bash
-./setup.sh unload --type server --label starcoder2-3b
+./setup.sh unload --type server --label qwen2.5-coder-7b
 ```
 
 ### Load
 
 ```bash
-./setup.sh load --type server --label starcoder2-3b
+./setup.sh load --type server --label qwen2.5-coder-7b
 ```
 
 

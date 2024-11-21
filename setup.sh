@@ -74,6 +74,9 @@ if [[ "$COMMAND" == "install" ]]; then
         <string>${MODEL_PATH}</string>
         <string>--ctx-size</string>
         <string>${CONTEXT_LENGTH}</string>
+        <string>--mirostat</string>
+        <string>2</string>
+        <string>--metrics</string>
         <string>--flash-attn</string>
 EOF
         if [[ "$MLOCK" == "true" ]]; then
