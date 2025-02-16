@@ -79,7 +79,7 @@ class CompletionsProxy < Sinatra::Base
     end
   end
 
-  post '/v1/models' do
+  get '/v1/models' do
     self.handle_completion_request(request)
   end
 
