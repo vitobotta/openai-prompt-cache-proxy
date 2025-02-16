@@ -121,7 +121,7 @@ EOF
         <string>UPSTREAM_BASE_URL=http://host.docker.internal:${UPSTREAM_PORT}</string>
         <string>-p</string>
         <string>${PORT}:5678</string>
-        <string>vitobotta/openai-prompt-cache-proxy:v16</string>
+        <string>vitobotta/openai-prompt-cache-proxy:v17</string>
     </array>
     <key>RunAtLoad</key>
     <true/>
