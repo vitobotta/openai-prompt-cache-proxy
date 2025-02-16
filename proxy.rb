@@ -57,8 +57,12 @@ class CompletionsProxy < Sinatra::Base
 
     http.read_timeout = 3600
 
-    request_body = JSON.parse(upstream_request.body)
-    is_streaming = request_body['stream'] == true
+    is_streaming = if upstream_request.body
+      request_body = JSON.parse(upstream_request.body)
+      is_streaming = request_body['stream'] == true
+    else
+      false
+    end
 
     if is_streaming
       headers 'Content-Type' => 'text/event-stream'
