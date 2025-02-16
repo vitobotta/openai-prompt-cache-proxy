@@ -84,7 +84,7 @@ EOF
         fi
 
         cat >> "$PLIST_TEMP" <<EOF
-        <string>--n-gpu-layers</string>
+        <string>-ngl</string>
         <string>1000</string>
         <string>--host</string>
         <string>0.0.0.0</string>
